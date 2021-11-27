@@ -9,7 +9,8 @@ class Pokemon(models.Model):
     title_jp = models.CharField(max_length=200, default='-')
     previous_evolution = models.ForeignKey('self', on_delete=models.SET_NULL,
                                            blank=True, null=True,
-                                           verbose_name='Из кого эволюционировал'
+                                           verbose_name='Из кого эволюционировал',
+                                           related_name='next_evolution'
                                            )
 
     def __str__(self):

@@ -78,6 +78,7 @@ def show_pokemon(request, pokemon_id):
             'title_en': pokemon.title_en,
             'title_jp': pokemon.title_jp,
             'previous_evolution': pokemon.previous_evolution,
+            'next_evolution': pokemon.next_evolution.all().first()
         }
 
     return render(request, 'pokemon.html', context={
