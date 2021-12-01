@@ -1,7 +1,6 @@
 import folium
 from django.shortcuts import get_object_or_404
 
-from django.http import HttpResponseNotFound
 from django.shortcuts import render
 from .models import Pokemon, PokemonEntity
 
@@ -61,7 +60,7 @@ def show_all_pokemons(request):
 
 def show_pokemon(request, pokemon_id):
     pokemon = get_object_or_404(Pokemon, id=pokemon_id)
-    pokemon_entities = PokemonEntity.objects.filter(pokemon=pokemon)
+    pokemon_entities = pokemon.pokemonentities.all()
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
     full_pokemon_link = request.build_absolute_uri(pokemon.image.url)
     for pokemon_entity in pokemon_entities:
